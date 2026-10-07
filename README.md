@@ -65,17 +65,6 @@ El proyecto utiliza:
 
 ## ♡ Estructura
 
-```text
-Telegram-sin-Telegram/
-│
-├── backend.ps1
-├── Abrir mensajes.bat
-├── cerrar.bat
-├── README.md
-│
-└── frontend/
-    └── index.html
-```
 
 Si se utilizan los `.bat` incluidos sin modificar, la carpeta principal debe encontrarse en:
 
