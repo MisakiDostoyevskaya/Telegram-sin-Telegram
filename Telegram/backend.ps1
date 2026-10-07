@@ -463,10 +463,3 @@ while ($true) {
         Write-Host ""
     }
 }
-```
-
-### Para configurarlo
-
-Solo tiene que completar estas dos líneas:
-
-$telegramToken = "T
