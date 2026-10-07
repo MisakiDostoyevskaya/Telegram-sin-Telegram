@@ -1,7 +1,6 @@
-╭────────────────────────────────────╮
-		♡ Mensajitos ♡
-	Guía para levantar el proyecto
-╰────────────────────────────────────╯
+
+♡ Mensajitos ♡
+Guía para levantar el proyecto
 
 ¡Buenas! ♡(.◜ω◝.)♡
 
