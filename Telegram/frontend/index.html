@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mensajitos</title>
+
+
+    <style>
+
+        /* ==========================================
+           VARIABLES
+           ========================================== */
+
+        :root {
+
+            --bg: #eeeeee;
+            --card: #ffffff;
+            --header: #e3e3e3;
+            --chat: #f5f5f5;
+
+            --text: #444444;
+            --secondary: #777777;
+
+            --bubble-mama: #dddddd;
+            --bubble-misa: #eeeeee;
+
+            --border: #d5d5d5;
+
+            --button: #777777;
+            --button-hover: #666666;
+
+        }
+
+
+        /* ==========================================
+           TEMA DARK
+           ========================================== */
+
+        body.dark {
+
+            --bg: #181818;
+            --card: #242424;
+            --header: #2c2c2c;
+            --chat: #202020;
+
+            --text: #eeeeee;
+            --secondary: #aaaaaa;
+
+            --bubble-mama: #383838;
+            --bubble-misa: #303030;
+
+            --border: #444444;
+
+            --button: #555555;
+            --button-hover: #666666;
+
+        }
+
+
+        /* ==========================================
+           TEMA CUTE
+           ========================================== */
+
+        body.cute {
+
+            --bg: #fff5fa;
+            --card: #ffffff;
+            --header: #f7dbea;
+            --chat: #fffafd;
+
+            --text: #5b5264;
+            --secondary: #907b98;
+
+            --bubble-mama: #f8d6e7;
+            --bubble-misa: #ddd5f8;
+
+            --border: #efd7e5;
+
+            --button: #d7a8c7;
+            --button-hover: #c995b8;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    #ffdff0 0,
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 90% 10%,
+                    #e5ddff 0,
+                    transparent 25%
+                ),
+                #fff5fa;
+
+        }
+
+
+        /* ==========================================
+           TEMA UNIVERSO
+           ========================================== */
+
+        body.universe {
+
+            --bg: #101426;
+            --card: #181d35;
+            --header: #202744;
+            --chat: #14192d;
+
+            --text: #e8eaff;
+            --secondary: #aeb5d4;
+
+            --bubble-mama: #30395f;
+            --bubble-misa: #272e50;
+
+            --border: #343d68;
+
+            --button: #59659e;
+            --button-hover: #6c79b8;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(110, 100, 220, 0.25),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(70, 120, 220, 0.2),
+                    transparent 30%
+                ),
+                #101426;
+
+        }
+
+
+        /* ==========================================
+           GENERAL
+           ========================================== */
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+        }
+
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            transition:
+                background 0.3s,
+                color 0.3s;
+
+        }
+
+
+        /* ==========================================
+           APLICACION
+           ========================================== */
+
+        .app {
+
+            width: min(95%, 520px);
+
+            height: min(90vh, 750px);
+
+            display: flex;
+
+            flex-direction: column;
+
+            overflow: hidden;
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,0.12);
+
+            transition:
+                background 0.3s,
+                border 0.3s;
+
+        }
+
+
+        /* ==========================================
+           HEADER
+           ========================================== */
+
+        .header {
+
+            padding: 18px 20px;
+
+            background: var(--header);
+
+            border-bottom:
+                1px solid var(--border);
+
+            text-align: center;
+
+        }
+
+
+        .header h1 {
+
+            font-size: 21px;
+
+            font-weight: 600;
+
+            color: var(--text);
+
+        }
+
+
+        .header p {
+
+            margin-top: 3px;
+
+            font-size: 12px;
+
+            color: var(--secondary);
+
+        }
+
+
+        /* ==========================================
+           TEMAS
+           ========================================== */
+
+        .themes {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 6px;
+
+            margin-top: 12px;
+
+        }
+
+
+        .theme-button {
+
+            width: auto;
+
+            height: auto;
+
+            padding: 5px 10px;
+
+            border-radius: 12px;
+
+            border: 1px solid var(--border);
+
+            background: var(--card);
+
+            color: var(--secondary);
+
+            font-size: 11px;
+
+            box-shadow: none;
+
+        }
+
+
+        .theme-button:hover {
+
+            transform: none;
+
+            background: var(--chat);
+
+        }
+
+
+        /* ==========================================
+           CHAT
+           ========================================== */
+
+        .chat {
+
+            flex: 1;
+
+            overflow-y: auto;
+
+            padding: 20px 16px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+
+            background: var(--chat);
+
+        }
+
+
+        .chat::-webkit-scrollbar {
+
+            width: 6px;
+
+        }
+
+
+        .chat::-webkit-scrollbar-thumb {
+
+            background: var(--border);
+
+            border-radius: 10px;
+
+        }
+
+
+        /* ==========================================
+           MENSAJES
+           ========================================== */
+
+        .message {
+
+            width: 100%;
+
+            display: flex;
+
+        }
+
+
+        .message.mama {
+
+            justify-content: flex-end;
+
+        }
+
+
+        .message.misa {
+
+            justify-content: flex-start;
+
+        }
+
+
+        .bubble {
+
+            max-width: 78%;
+
+            padding: 10px 14px;
+
+            border-radius: 16px;
+
+            font-size: 14px;
+
+            line-height: 1.4;
+
+            word-wrap: break-word;
+
+            box-shadow:
+                0 2px 5px
+                rgba(0,0,0,0.05);
+
+        }
+
+
+        .mama .bubble {
+
+            background: var(--bubble-mama);
+
+            color: var(--text);
+
+            border-bottom-right-radius: 4px;
+
+        }
+
+
+        .misa .bubble {
+
+            background: var(--bubble-misa);
+
+            color: var(--text);
+
+            border-bottom-left-radius: 4px;
+
+        }
+
+
+        .time {
+
+            display: block;
+
+            margin-top: 4px;
+
+            font-size: 10px;
+
+            opacity: 0.55;
+
+            text-align: right;
+
+        }
+
+
+        /* ==========================================
+           SIN MENSAJES
+           ========================================== */
+
+        .empty {
+
+            margin: auto;
+
+            text-align: center;
+
+            color: var(--secondary);
+
+            font-size: 13px;
+
+        }
+
+
+        .empty span {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 27px;
+
+        }
+
+
+        /* ==========================================
+           COMPOSITOR
+           ========================================== */
+
+        .composer {
+
+            padding: 12px;
+
+            display: flex;
+
+            gap: 8px;
+
+            align-items: flex-end;
+
+            background: var(--card);
+
+            border-top:
+                1px solid var(--border);
+
+        }
+
+
+        textarea {
+
+            flex: 1;
+
+            min-height: 45px;
+
+            max-height: 120px;
+
+            resize: none;
+
+            padding: 11px 13px;
+
+            outline: none;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 16px;
+
+            background: var(--chat);
+
+            color: var(--text);
+
+            font-family: inherit;
+
+            font-size: 14px;
+
+        }
+
+
+        textarea:focus {
+
+            border-color: var(--button);
+
+        }
+
+
+        textarea::placeholder {
+
+            color: var(--secondary);
+
+        }
+
+
+        /* ==========================================
+           BOTON ENVIAR
+           ========================================== */
+
+        #send {
+
+            width: 45px;
+
+            height: 45px;
+
+            flex-shrink: 0;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: var(--button);
+
+            color: white;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        #send:hover {
+
+            background: var(--button-hover);
+
+            transform: translateY(-1px);
+
+        }
+
+
+        #send:active {
+
+            transform: scale(0.94);
+
+        }
+
+
+        #send:disabled {
+
+            opacity: 0.5;
+
+            cursor: default;
+
+            transform: none;
+
+        }
+
+
+        /* ==========================================
+           CELULAR
+           ========================================== */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                align-items: stretch;
+
+            }
+
+
+            .app {
+
+                width: 100%;
+
+                height: 100vh;
+
+                border-radius: 0;
+
+                border: none;
+
+            }
+
+
+            .header {
+
+                padding: 16px;
+
+            }
+
+
+            .chat {
+
+                padding:
+                    16px 12px;
+
+            }
+
+
+            .bubble {
+
+                max-width: 84%;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="app">
+
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <h1>Mensajitos</h1>
+
+            <p>
+                Un rinconcito para hablar
+            </p>
+
+
+            <!-- TEMAS -->
+
+            <div class="themes">
+
+                <button
+                    class="theme-button"
+                    onclick="setTheme('normal')"
+                >
+                    ◻ Gris
+                </button>
+
+
+                <button
+                    class="theme-button"
+                    onclick="setTheme('dark')"
+                >
+                    ◐ Dark
+                </button>
+
+
+                <button
+                    class="theme-button"
+                    onclick="setTheme('cute')"
+                >
+                    ♡ Cute
+                </button>
+
+
+                <button
+                    class="theme-button"
+                    onclick="setTheme('universe')"
+                >
+                    ✦ Universo
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- CHAT -->
+
+        <main
+            class="chat"
+            id="chat"
+        >
+
+            <div
+                class="empty"
+                id="empty"
+            >
+
+                <span>♡</span>
+
+                Todavía no hay mensajes
+
+            </div>
+
+        </main>
+
+
+        <!-- ESCRIBIR -->
+
+        <footer class="composer">
+
+            <textarea
+                id="message"
+                placeholder="Escribí un mensajito..."
+                rows="1"
+            ></textarea>
+
+
+            <button
+                id="send"
+                title="Enviar"
+            >
+                ➤
+            </button>
+
+        </footer>
+
+
+    </div>
+
+
+    <script>
+
+
+        // ==================================================
+        // ELEMENTOS
+        // ==================================================
+
+        const chat =
+            document.getElementById("chat");
+
+
+        const input =
+            document.getElementById("message");
+
+
+        const sendButton =
+            document.getElementById("send");
+
+
+        let lastMessages = "";
+
+
+        // ==================================================
+        // CAMBIAR TEMA
+        // ==================================================
+
+        function setTheme(theme) {
+
+            document.body.classList.remove(
+                "dark",
+                "cute",
+                "universe"
+            );
+
+
+            if (theme !== "normal") {
+
+                document.body.classList.add(theme);
+
+            }
+
+
+            // Guardar preferencia
+
+            localStorage.setItem(
+                "chatTheme",
+                theme
+            );
+
+        }
+
+
+        // ==================================================
+        // CARGAR TEMA GUARDADO
+        // ==================================================
+
+        const savedTheme =
+            localStorage.getItem("chatTheme");
+
+
+        if (savedTheme) {
+
+            setTheme(savedTheme);
+
+        }
+
+
+        // ==================================================
+        // MOSTRAR MENSAJE
+        // ==================================================
+
+        function addMessage(
+            text,
+            sender,
+            time
+        ) {
+
+            const message =
+                document.createElement("div");
+
+
+            message.className =
+                "message " +
+                (
+                    sender === "mama"
+                        ? "mama"
+                        : "misa"
+                );
+
+
+            const bubble =
+                document.createElement("div");
+
+
+            bubble.className =
+                "bubble";
+
+
+            const content =
+                document.createElement("div");
+
+
+            content.textContent =
+                text;
+
+
+            const timestamp =
+                document.createElement("span");
+
+
+            timestamp.className =
+                "time";
+
+
+            timestamp.textContent =
+                time || getCurrentTime();
+
+
+            bubble.appendChild(
+                content
+            );
+
+
+            bubble.appendChild(
+                timestamp
+            );
+
+
+            message.appendChild(
+                bubble
+            );
+
+
+            chat.appendChild(
+                message
+            );
+
+        }
+
+
+        // ==================================================
+        // HORA
+        // ==================================================
+
+        function getCurrentTime() {
+
+            return new Date().toLocaleTimeString(
+                "es-AR",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+        }
+
+
+        // ==================================================
+        // CARGAR MENSAJES
+        // ==================================================
+
+        async function loadMessages() {
+
+            try {
+
+                const response =
+                    await fetch("/messages");
+
+
+                if (!response.ok) {
+
+                    return;
+
+                }
+
+
+                const messages =
+                    await response.json();
+
+
+                const messageKey =
+                    JSON.stringify(messages);
+
+
+                // No redibujar si nada cambió
+
+                if (
+                    messageKey ===
+                    lastMessages
+                ) {
+
+                    return;
+
+                }
+
+
+                lastMessages =
+                    messageKey;
+
+
+                chat.innerHTML = "";
+
+
+                if (
+                    messages.length === 0
+                ) {
+
+                    const empty =
+                        document.createElement("div");
+
+
+                    empty.className =
+                        "empty";
+
+
+                    empty.innerHTML =
+                        "<span>♡</span>" +
+                        "Todavía no hay mensajes";
+
+
+                    chat.appendChild(
+                        empty
+                    );
+
+
+                    return;
+
+                }
+
+
+                messages.forEach(
+                    message => {
+
+                        addMessage(
+                            message.text,
+                            message.sender,
+                            message.time
+                        );
+
+                    }
+                );
+
+
+                // Ir al último mensaje
+
+                chat.scrollTop =
+                    chat.scrollHeight;
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Error cargando mensajes:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        // ==================================================
+        // ENVIAR MENSAJE
+        // ==================================================
+
+        async function sendMessage() {
+
+            const text =
+                input.value.trim();
+
+
+            if (!text) {
+
+                return;
+
+            }
+
+
+            sendButton.disabled =
+                true;
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/send",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+                                    message: text
+                                })
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (
+                    !response.ok ||
+                    !result.ok
+                ) {
+
+                    throw new Error(
+                        result.error ||
+                        "No se pudo enviar"
+                    );
+
+                }
+
+
+                // Limpiar caja
+
+                input.value = "";
+
+                input.style.height =
+                    "auto";
+
+
+                // Actualizar inmediatamente
+
+                await loadMessages();
+
+
+                input.focus();
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+
+                alert(
+                    "No se pudo enviar el mensaje."
+                );
+
+            }
+
+            finally {
+
+                sendButton.disabled =
+                    false;
+
+            }
+
+        }
+
+
+        // ==================================================
+        // BOTON ENVIAR
+        // ==================================================
+
+        sendButton.addEventListener(
+            "click",
+            sendMessage
+        );
+
+
+        // ==================================================
+        // ENTER
+        // ==================================================
+
+        input.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter" &&
+                    !event.shiftKey
+                ) {
+
+                    event.preventDefault();
+
+                    sendMessage();
+
+                }
+
+            }
+        );
+
+
+        // ==================================================
+        // AUTO RESIZE
+        // ==================================================
+
+        input.addEventListener(
+            "input",
+            function() {
+
+                this.style.height =
+                    "auto";
+
+
+                this.style.height =
+                    Math.min(
+                        this.scrollHeight,
+                        120
+                    ) + "px";
+
+            }
+        );
+
+
+        // ==================================================
+        // ACTUALIZAR CHAT
+        // ==================================================
+
+        loadMessages();
+
+
+        // Revisar nuevos mensajes cada 2 segundos
+
+        setInterval(
+            loadMessages,
+            2000
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
